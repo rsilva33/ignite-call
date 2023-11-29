@@ -3,6 +3,7 @@ import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { api } from '../../lib/axios'
 
 import { Container, Form, FormError, Header } from './styles'
 import { useRouter } from 'next/router'
@@ -40,8 +41,15 @@ export default function Register() {
     }
   }, [router.query?.username, setValue])
 
-  function handleRegister(data: RegisterFormData) {
-    console.log(data)
+  async function handleRegister(data: RegisterFormData) {
+    try {
+      await api.post('/users', {
+        name: data.name,
+        username: data.username,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
