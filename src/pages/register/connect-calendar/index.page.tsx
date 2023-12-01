@@ -36,6 +36,10 @@ export default function Register() {
           </Button>
         </ConnectItem>
 
+        {/* <pre>
+          <Text>{JSON.stringify(session.data)}</Text>
+        </pre> */}
+
         <Button type="submit">
           Próximo passo
           <ArrowRight />
