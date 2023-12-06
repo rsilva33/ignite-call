@@ -3,6 +3,7 @@ import { setCookie } from 'nookies'
 import { prisma } from '../../../lib/prisma'
 
 export default async function handler(
+  // Acesso aos cookies (req -> acessar os cookies, res -> modificar)
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
