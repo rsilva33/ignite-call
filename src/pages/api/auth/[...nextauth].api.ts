@@ -19,6 +19,7 @@ export function buildNextAuthOptions(
               'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar',
           },
         },
+        // mapeia os campos internos do next auth do usuario com o perfil retornado do google
         profile(profile: GoogleProfile) {
           return {
             id: profile.sub,
@@ -39,6 +40,12 @@ export function buildNextAuthOptions(
         }
 
         return true
+      },
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        }
       },
     },
   }

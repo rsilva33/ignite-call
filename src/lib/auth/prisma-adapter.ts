@@ -27,6 +27,7 @@ export function PrismaAdapter(
       })
 
       destroyCookie({ res }, '@ignitecall:userId', {
+        // apagar os cookies para todas as paginas
         path: '/',
       })
 
