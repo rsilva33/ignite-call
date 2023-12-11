@@ -18,6 +18,7 @@ export const IntervalItem = styled('div', {
   justifyContent: 'space-between',
   padding: '$3 $4',
 
+  // & + & -> aplica a a modificacao do segundo em diante, aplica um css somente no intervalitem que tiver um itervalitem antes dele
   '& + &': {
     borderTop: '1px solid $gray600',
   },
@@ -34,6 +35,7 @@ export const IntervalInputs = styled('div', {
   alignItems: 'center',
   gap: '$2',
 
+  // alterando a cor do icone que ja esta na navegador
   'input::-webkit-calendar-picker-indicator': {
     filter: 'invert(100%) brightness(40%)',
   },
