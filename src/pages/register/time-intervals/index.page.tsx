@@ -27,6 +27,7 @@ export default function TimeIntervals() {
     register,
     handleSubmit,
     control,
+    // assiste em tempo real as mudancas que ouveram em algum campo
     watch,
     formState: { isSubmitting, errors },
   } = useForm({
@@ -80,6 +81,8 @@ export default function TimeIntervals() {
                       return (
                         <Checkbox
                           onCheckedChange={(checked) =>
+                            // Inderterminate -> 
+                            // Onchange -> quando quer alterar o valor do campo
                             field.onChange(checked === true)
                           }
                           checked={field.value}
