@@ -11,6 +11,7 @@ import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { getWeekDays } from '../../../utils/get-week-days'
 import { Container, Header } from '../styles'
+// Transformacao de dados
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import {
@@ -32,7 +33,10 @@ const timeIntervalsFormSchema = z.object({
         endTime: z.string(),
       }),
     )
+    // sempre precisa receber todos os dias da semana
     .length(7)
+    // modifica o formato do array , recebe o array original e faz o que quiser
+    // retornando o array original filtrado pelos itens que estao com enable sendo true
     .transform((intervals) => intervals.filter((interval) => interval.enabled))
     .refine((intervals) => intervals.length > 0, {
       message: 'Você precisa selecionar pelo menos um dia da semana',
@@ -137,10 +141,10 @@ export default function TimeIntervals() {
           })}
         </IntervalContainer>
         {errors.intervals && (
-          <FormError size="sm">{errors.intervals.message}</FormError>
+          <FormError size="sm">{errors.intervals.root?.message}</FormError>
         )}
 
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           Próximo passo
           <ArrowRight />
         </Button>
