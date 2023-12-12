@@ -1,6 +1,6 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
-import { PrismaAdapter } from '../../../lib/auth/prisma-adapter'
+import { PrismaAdapter } from '@/lib/auth/prisma-adapter'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export function buildNextAuthOptions(
