@@ -41,6 +41,7 @@ export function buildNextAuthOptions(
 
         return true
       },
+      // necessario declarar o user dentro de @types/next-auth.d.ts -> next auth nao le o codigo para saber que adicionou
       async session({ session, user }) {
         return {
           ...session,

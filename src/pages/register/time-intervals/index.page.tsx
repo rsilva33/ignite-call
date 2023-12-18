@@ -9,7 +9,8 @@ import {
 import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minute'
+import { api } from '@/lib/axios'
+import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 import { getWeekDays } from '@/utils/get-week-days'
 import { Container, Header } from '../styles'
 // Transformacao de dados
@@ -106,9 +107,11 @@ export default function TimeIntervals() {
 
   async function handleSetTimeIntervals(data: any) {
     // forcando para o typescript entender que seria essa a tipagem utilizada
-    const formData = data as TimeIntervalsFormOutput
+    const { intervals } = data as TimeIntervalsFormOutput
 
-    console.log(formData)
+    await api.post('/users/time-intervals', {
+      intervals,
+    })
   }
 
   return (

@@ -14,6 +14,7 @@ const timeIntervalsBodySchema = z.object({
   ),
 })
 
+// Cadastra os intervalos de tempo que usuario tem de disponibilidade
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -21,6 +22,7 @@ export default async function handler(
   if (req.method !== 'POST') {
     return res.status(405).end()
   }
+  // obtendo informacoes de usuario logado
   const session = await getServerSession(
     req,
     res,
@@ -34,9 +36,11 @@ export default async function handler(
   // safeParse -> faz o parse mas nao retorna o erro
   const { intervals } = timeIntervalsBodySchema.parse(req.body)
 
+  // Promise.all cria todos registro ao mesmo tempo
   await Promise.all(
+    // percorre cada um dos intervalos
     intervals.map((interval) => {
-      // createMany seria o ideal
+      // createMany seria o ideal, sqlite nao suporta trabalhar com insert multiplo
       return prisma.userTimeInterval.create({
         data: {
           week_day: interval.weekDay,
@@ -48,5 +52,6 @@ export default async function handler(
     }),
   )
 
+  // apenas para info -> return res.json({ session,}), nao e necessario retornar os dados em prod
   return res.status(201).end()
 }
