@@ -22,7 +22,7 @@ export default async function handler(
   if (req.method !== 'POST') {
     return res.status(405).end()
   }
-  // obtendo informacoes de usuario logado
+  // obtendo informacoes de usuario logado -- carregar sessao do user
   const session = await getServerSession(
     req,
     res,

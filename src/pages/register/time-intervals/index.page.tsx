@@ -97,7 +97,7 @@ export default function TimeIntervals() {
 
   const weekDays = getWeekDays()
 
-  // PERMITE ITERAR UM CAMPO DO FORM QUE E UM ARRAY E PODE RECEBER MAIS OU MENOS VALORES
+  // useFieldArray -> Hook para manipular com um conjunto de dados, podendo configurar um formulário de tamanho dinâmico
   const { fields } = useFieldArray({
     control,
     name: 'intervals',
@@ -132,6 +132,7 @@ export default function TimeIntervals() {
             return (
               <IntervalItem key={field.id}>
                 <IntervalDay>
+                  {/* Quando queremos ter acesso a informações como valor do componente, se ele está em modo ativo, se seu conteúdo é valido entre outros */}
                   <Controller
                     name={`intervals.${index}.enabled`}
                     control={control}
