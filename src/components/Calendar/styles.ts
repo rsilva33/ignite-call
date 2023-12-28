@@ -1,13 +1,99 @@
 import { styled, Text } from '@ignite-ui/react'
 
-export const CalendarContainer = styled('div', {})
+export const CalendarContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$6',
+  padding: '$6',
+})
 
-export const CalendarHeader = styled('div', {})
+export const CalendarHeader = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+})
 
-export const CalendarTitle = styled(Text, {})
+export const CalendarTitle = styled(Text, {
+  fontWeight: '$medium',
 
-export const CalendarActions = styled('div', {})
+  span: {
+    color: '$gray200',
+  },
+})
+export const CalendarActions = styled('div', {
+  display: 'flex',
+  gap: '$2',
+  color: '$gray200',
+  button: {
+    all: 'unset',
+    cursor: 'pointer',
+    // quando tem icones e necessario resetar o fontsize e lineheight, o tamanho pode ficar descrepante
+    lineHeight: 0,
+    borderRadius: '$sm',
 
-export const CalendarBody = styled('table', {})
+    // icone
+    svg: {
+      width: '$5',
+      height: '$5',
+    },
 
-export const CalendarDay = styled('button', {})
+    '&:hover': {
+      color: '$gray100',
+    },
+
+    '&:focus': {
+      boxShadow: '0 0 0 2px $colors$gray100',
+    },
+  },
+})
+
+export const CalendarBody = styled('table', {
+  width: '100%',
+  fontFamily: '$default',
+  borderSpacing: '0.25rem',
+  tableLayout: 'fixed',
+  // nao tem como colocar margen no thead, tbody, displaytable
+  'thead th': {
+    color: '$gray200',
+    fontWeight: '$medium',
+    fontSize: '$sm',
+  },
+
+  //colocando margen, hack para espacamento
+  'tbody:before': {
+    lineHeight: '0.75rem',
+    content: '.',
+    display: 'block',
+    color: '$gray800',
+  },
+
+  'tbody td': {
+    boxSizing: 'border-box',
+  },
+})
+
+export const CalendarDay = styled('button', {
+  // tirando todas estilizacoes
+  all: 'unset',
+  width: '100%',
+  // forcando para ter a mesma largura e altura fixa
+  aspectRatio: '1 / 1',
+  background: '$gray600',
+  textAlign: 'center',
+  cursor: 'pointer',
+  borderRadius: '$sm',
+
+  '&:disabled': {
+    background: 'none',
+    cursor: 'default',
+    opacity: 0.4,
+  },
+
+  '&:not(:disabled):hover': {
+    background: '$gray500',
+  },
+
+  '&:focus': {
+    boxShadow: '0 0 0 2px $colors$gray100',
+  },
+})
