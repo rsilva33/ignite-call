@@ -59,7 +59,7 @@ export const CalendarBody = styled('table', {
     fontSize: '$sm',
   },
 
-  //colocando margen, hack para espacamento
+  // colocando margen, hack para espacamento
   'tbody:before': {
     lineHeight: '0.75rem',
     content: '.',
